@@ -1,0 +1,5 @@
+{
+  "output_dir_parts" : ["screenshots"],
+  "image_extension" : ".png",
+  "image_start_index" : 1
+}
