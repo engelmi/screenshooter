@@ -8,7 +8,7 @@ setup(
     author = 'Michael Engel',
     author_email = 'engel.michael@hotmail.de',
     url = 'https://github.com/engelmi/screenshooter',
-    download_url = 'https://github.com/engelmi/screenshooter/archive/v_01.tar.gz',
+    download_url = 'https://github.com/engelmi/screenshooter/archive/v_01a.tar.gz',
     keywords = ['Screen', 'Screen Shot', 'Shortcut', 'Keyboard', 'Hook'],
     install_requires=[
         'keyboard',
