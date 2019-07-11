@@ -4,7 +4,7 @@ setup(
     packages = ['screenshooter'],
     version = '0.1',
     license='MIT',
-    description = 'Simple screen shot tool',
+    description = 'Simple screenshot tool',
     author = 'Michael Engel',
     author_email = 'engel.michael@hotmail.de',
     url = 'https://github.com/engelmi/screenshooter',
