@@ -1,3 +1,7 @@
+"""
+
+"""
+
 import keyboard
 from mss import mss
 from PIL import Image
@@ -78,3 +82,9 @@ class Screenshooter(object):
             # Grab the data
             sct_img = sct.grab(monitor)
             self.grab_screen_observer.process(Image.frombytes("RGB", sct_img.size, sct_img.bgra, "raw", "BGRX"))
+
+
+if __name__ == "__main__":
+    from imagesaver import ImageSaver
+    s = Screenshooter(ImageSaver())
+    input("grabbing images...\n")
