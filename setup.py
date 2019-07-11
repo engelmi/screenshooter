@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
     name = 'ScreenShooter',
     packages = ['screenshooter'],
-    version = '0.1',
+    version = '0.1a',
     license='MIT',
     description = 'Simple screenshot tool',
     author = 'Michael Engel',
