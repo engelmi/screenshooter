@@ -1,9 +1,8 @@
 import keyboard
 from mss import mss
 from PIL import Image
-from os.path import join
+from config import DEFAULT_CONFIG_SCREENSHOOTER
 from observer import ScreenGrabObserver
-from config.config import read_json_config
 
 
 class Screenshooter(object):
@@ -11,7 +10,7 @@ class Screenshooter(object):
     Simple class for taking screenshots.
     """
 
-    def __init__(self, grab_screen_observer):
+    def __init__(self, grab_screen_observer, config_dict=DEFAULT_CONFIG_SCREENSHOOTER):
         """
         Constructor.
         :param grab_screen_observer: The observer that is being notified for processing a grabbed image.
@@ -23,31 +22,24 @@ class Screenshooter(object):
         self.shortcut = ""
         self.monitor_dict = {}
 
-        self.parse_config(self.read_config())
+        self.parse_config(config_dict)
         self.set_grab_screen_hook()
 
-    def read_config(self):
-        """
-        Reads the config file for the ImageSaver.
-        :return: A python dict representation of the config.
-        """
-        return read_json_config(join("config", "screenshooter.json"))
-
-    def parse_config(self, config_json):
+    def parse_config(self, config_dict):
         """
         Parses the read config.
-        :param config_json: The read config as python dict.
+        :param config_dict: The read config as python dict.
         :return:
         """
-        self.shortcut = config_json["shortcut"]
-        self.monitor_dict["monitor_number"] = config_json["monitor"]["monitor_number"]
+        self.shortcut = config_dict["shortcut"]
+        self.monitor_dict["monitor_number"] = config_dict["monitor"]["monitor_number"]
         with mss() as sct:
             mon = sct.monitors[self.monitor_dict["monitor_number"]]
-            self.monitor_dict["offset_x"] = mon["left"] if (config_json["monitor"]["offset_x"] == "*") else min(max(config_json["monitor"]["offset_x"], mon["left"]), mon["width"])
-            self.monitor_dict["width"] = mon["width"] if (config_json["monitor"]["width"] == "*") else  min(max(config_json["monitor"]["width"], mon["left"]), mon["width"])
+            self.monitor_dict["offset_x"] = mon["left"] if (config_dict["monitor"]["offset_x"] == "*") else min(max(config_dict["monitor"]["offset_x"], mon["left"]), mon["width"])
+            self.monitor_dict["width"] = mon["width"] if (config_dict["monitor"]["width"] == "*") else  min(max(config_dict["monitor"]["width"], mon["left"]), mon["width"])
             self.monitor_dict["width"] = min(self.monitor_dict["offset_x"] + self.monitor_dict["width"], mon["width"] - self.monitor_dict["offset_x"])
-            self.monitor_dict["offset_y"] = mon["top"] if (config_json["monitor"]["offset_y"] == "*") else min(max(config_json["monitor"]["offset_y"], mon["top"]), mon["height"])
-            self.monitor_dict["height"] = mon["height"] if (config_json["monitor"]["height"] == "*") else min(max(config_json["monitor"]["height"], mon["top"]), mon["height"])
+            self.monitor_dict["offset_y"] = mon["top"] if (config_dict["monitor"]["offset_y"] == "*") else min(max(config_dict["monitor"]["offset_y"], mon["top"]), mon["height"])
+            self.monitor_dict["height"] = mon["height"] if (config_dict["monitor"]["height"] == "*") else min(max(config_dict["monitor"]["height"], mon["top"]), mon["height"])
             self.monitor_dict["height"] = min(self.monitor_dict["offset_y"] + self.monitor_dict["height"], mon["height"] - self.monitor_dict["offset_y"])
 
     def set_grab_screen_hook(self):

@@ -1,10 +1,9 @@
 import shutil
-import threading
 from os import makedirs
 from os.path import join
 from datetime import datetime
 
-from config.config import read_json_config
+from config import DEFAULT_CONFIG_IMAGES_SAVER
 from observer import ScreenGrabObserver
 
 
@@ -13,7 +12,7 @@ class ImageSaver(ScreenGrabObserver):
     Simple class for saving grabbed screenshots to file.
     """
 
-    def __init__(self):
+    def __init__(self, config_dict=DEFAULT_CONFIG_IMAGES_SAVER):
         """
         Constructor.
         """
@@ -22,26 +21,19 @@ class ImageSaver(ScreenGrabObserver):
         self.image_extension = ""
         self.curr_image_index = 1
 
-        self.parse_config(self.read_config())
+        self.parse_config(config_dict)
         self.output_dir_assembled = join(*self.output_dir_parts)
         self.delete_output_dir()
         self.create_output_dir()
 
-    def read_config(self):
-        """
-        Reads the config file for the ImageSaver.
-        :return: A python dict representation of the config.
-        """
-        return read_json_config(join("config", "imagesaver.json"))
-
-    def parse_config(self, config_json):
+    def parse_config(self, config_dict):
         """
         Parses the read config.
         :param config_json: The read config as python dict.
         """
-        self.output_dir_parts = config_json['output_dir_parts']
-        self.image_extension = config_json['image_extension']
-        self.curr_image_index = config_json['image_start_index']
+        self.output_dir_parts = config_dict['output_dir_parts']
+        self.image_extension = config_dict['image_extension']
+        self.curr_image_index = config_dict['image_start_index']
 
     def process(self, image):
         """
