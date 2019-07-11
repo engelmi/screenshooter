@@ -3,14 +3,19 @@ from os import makedirs
 from os.path import join
 from datetime import datetime
 
-from config import DEFAULT_CONFIG_IMAGES_SAVER
-from observer import ScreenGrabObserver
+from screenshooter import observer as obsv
 
 
-class ImageSaver(ScreenGrabObserver):
+class ImageSaver(obsv.ScreenGrabObserver):
     """
     Simple class for saving grabbed screenshots to file.
     """
+
+    DEFAULT_CONFIG_IMAGES_SAVER = {
+        "output_dir_parts" : ["screenshots"],
+        "image_extension" : ".png",
+        "image_start_index" : 1
+    }
 
     def __init__(self, config_dict=DEFAULT_CONFIG_IMAGES_SAVER):
         """

@@ -1,8 +1,8 @@
 import keyboard
 from mss import mss
 from PIL import Image
-from config import DEFAULT_CONFIG_SCREENSHOOTER
-from observer import ScreenGrabObserver
+
+from screenshooter import observer as obsv
 
 
 class Screenshooter(object):
@@ -10,13 +10,24 @@ class Screenshooter(object):
     Simple class for taking screenshots.
     """
 
+    DEFAULT_CONFIG_SCREENSHOOTER = {
+        "shortcut" : "ctrl+shift",
+        "monitor" : {
+            "monitor_number" : 1,
+            "offset_x" : "*",
+            "offset_y" : "*",
+            "width" : "*",
+            "height": "*"
+        }
+    }
+
     def __init__(self, grab_screen_observer, config_dict=DEFAULT_CONFIG_SCREENSHOOTER):
         """
         Constructor.
         :param grab_screen_observer: The observer that is being notified for processing a grabbed image.
         """
-        if not isinstance(grab_screen_observer, ScreenGrabObserver):
-            raise Exception("Observer needs to be instance of " + str(ScreenGrabObserver))
+        if not isinstance(grab_screen_observer, obsv.ScreenGrabObserver):
+            raise Exception("Observer needs to be instance of " + str(obsv.ScreenGrabObserver))
         self.grab_screen_observer = grab_screen_observer
 
         self.shortcut = ""
