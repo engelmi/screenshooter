@@ -8,13 +8,13 @@ from config.config import read_json_config
 
 class Screenshooter(object):
     """
-
+    Simple class for taking screenshots.
     """
 
     def __init__(self, grab_screen_observer):
         """
-
-        :param grab_screen_observer:
+        Constructor.
+        :param grab_screen_observer: The observer that is being notified for processing a grabbed image.
         """
         if not isinstance(grab_screen_observer, ScreenGrabObserver):
             raise Exception("Observer needs to be instance of " + str(ScreenGrabObserver))
@@ -28,15 +28,15 @@ class Screenshooter(object):
 
     def read_config(self):
         """
-
-        :return:
+        Reads the config file for the ImageSaver.
+        :return: A python dict representation of the config.
         """
         return read_json_config(join("config", "screenshooter.json"))
 
     def parse_config(self, config_json):
         """
-
-        :param config_json:
+        Parses the read config.
+        :param config_json: The read config as python dict.
         :return:
         """
         self.shortcut = config_json["shortcut"]
@@ -52,23 +52,20 @@ class Screenshooter(object):
 
     def set_grab_screen_hook(self):
         """
-
-        :return:
+        Sets the configured shortcut as global keyboard hook for grabbing screenshots.
         """
         self.remove_grab_screen_hook()
         keyboard.add_hotkey(self.shortcut, self.grab_screen)
 
     def remove_grab_screen_hook(self):
         """
-
-        :return:
+        Removes the configured shortcut from the global keyboard hooks.
         """
         keyboard.release(self.shortcut)
 
     def grab_screen(self):
         """
-
-        :return:
+        Event method. Called when the keyboard shortcut is being pressed.
         """
         with mss() as sct:
             monitor = {
