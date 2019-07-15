@@ -1,3 +1,6 @@
+[![PyPI version](https://badge.fury.io/py/ScreenShooter.svg)](https://badge.fury.io/py/screenshooter)
+[![Python Support](https://img.shields.io/pypi/pyversions/screenshooter.svg)](https://pypi.org/project/screenshooter/)
+
 # ScreenShooter
 ScreenShooter provides a simple way of generating a screen shots via customizable keyboard shortcuts. 
 
