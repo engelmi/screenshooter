@@ -2,13 +2,13 @@ from distutils.core import setup
 setup(
     name = 'ScreenShooter',
     packages = ['screenshooter'],
-    version = '0.1b',
+    version = '0.10',
     license='MIT',
     description = 'Simple screenshot tool',
     author = 'Michael Engel',
     author_email = 'engel.michael@hotmail.de',
     url = 'https://github.com/engelmi/screenshooter',
-    download_url = 'https://github.com/engelmi/screenshooter/archive/v_01b.tar.gz',
+    download_url = 'https://github.com/engelmi/screenshooter/archive/v_10.tar.gz',
     keywords = ['Screen', 'Screen Shot', 'Shortcut', 'Keyboard', 'Hook'],
     install_requires=[
         'keyboard',
