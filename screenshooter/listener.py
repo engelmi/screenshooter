@@ -1,7 +1,7 @@
 
-class ScreenGrabObserver(object):
+class ScreenGrabListener(object):
     """
-    Basic observer class to process a grabbed image via the screenshooter.
+    Basic listener class to process a grabbed image via the screenshooter.
     """
 
     def process(self, grabbed_image):

@@ -3,10 +3,10 @@ from os import makedirs
 from os.path import join
 from datetime import datetime
 
-from screenshooter import observer as obsv
+from screenshooter import listener as li
 
 
-class ImageSaver(obsv.ScreenGrabObserver):
+class ImageSaver(li.ScreenGrabListener):
     """
     Simple class for saving grabbed screenshots to file.
     """

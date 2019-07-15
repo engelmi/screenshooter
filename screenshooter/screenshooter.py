@@ -2,7 +2,7 @@ import keyboard
 from mss import mss
 from PIL import Image
 
-from screenshooter import observer as obsv
+from screenshooter import listener as li
 
 
 class Screenshooter(object):
@@ -26,8 +26,8 @@ class Screenshooter(object):
         Constructor.
         :param grab_screen_observer: The observer that is being notified for processing a grabbed image.
         """
-        if not isinstance(grab_screen_observer, obsv.ScreenGrabObserver):
-            raise Exception("Observer needs to be instance of " + str(obsv.ScreenGrabObserver))
+        if not isinstance(grab_screen_observer, li.ScreenGrabListener):
+            raise Exception("Observer needs to be instance of " + str(li.ScreenGrabListener))
         self.grab_screen_observer = grab_screen_observer
 
         self.shortcut = ""
